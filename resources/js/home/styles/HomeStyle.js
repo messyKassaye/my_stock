@@ -1,12 +1,18 @@
 import { makeStyles } from "@material-ui/core";
 
 const HomeStyle = makeStyles((theme)=>({
+    mainContainer:{
+      display:'flex',
+      flexDirection:'column',
+      minHeight:'100vh'
+    },
     container:{
         display:'flex',
-        flexDirection:'column'
+        flexDirection:'column',
+        flex:1
     },
     banner:{
-        marginTop:65
+        marginTop:115
     },
     select:{
         background: 'transparent',
@@ -20,6 +26,17 @@ const HomeStyle = makeStyles((theme)=>({
       },
       inputGroupAddon:{
         padding: '0!important'
+      },
+      eachSlide:{
+        height:400
+      },
+      slideLabel:{
+        color:'white'
+      },
+      verticalGrow:{
+        display:"flex",
+        flexDirection:'column',
+        glexGrow:1
       }
 }))
 

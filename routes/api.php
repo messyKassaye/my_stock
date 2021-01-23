@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//authentication routes
+Route::post("/login", "App\\Http\\Controllers\\AuthController@login");
+Route::post("/signup", "App\\Http\\Controllers\\AuthController@signup");
+
+
+//sanctum middleware for authenticated users
+Route::middleware(["auth:sanctum"])->group(function () {
+    //Route::resource("/products", "App\\Http\\Controllers\\ProductController");
 });
+
+//global access api routes
+Route::get('/company_category','CompanyCategoryController@index');
+Route::post("/config","ConfigController@store");
+Route::post('/companies','CompanyController@store');

@@ -1,0 +1,60 @@
+import { makeStyles } from "@material-ui/core";
+
+const RegistrationStyle = makeStyles((theme)=>({
+    container:{
+        display:'flex',
+        flexDirection:'column',
+    },
+    grow:{
+        flexGrow:1
+    },
+    formContainer:{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        marginTop:80
+    },
+    form:{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        width:'35%'
+    },
+    formInfo:{
+        marginBottom:20
+    },
+    text_input:{
+        width:'100%',
+        marginBottom:50
+    },
+    text_area:{
+        width:'100%',
+        padding:10,
+        marginBottom:50
+    },
+    birthDate:{
+        display:"flex",
+        flexDirection:'column',
+        alignItems:'flex-start',
+        width:'100%',
+        marginBottom:30
+    },
+    genderInnerLayout:{
+        display:"flex",
+        flexDirection:'row'
+    },
+    upload:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
+        marginBottom:25
+    },
+    contactContainer:{
+        display:'flex',
+        flexDirection:'column',
+        width:'100%'
+    }
+}))
+
+export default RegistrationStyle

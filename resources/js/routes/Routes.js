@@ -6,7 +6,9 @@ import Dashboard from "../auth/Dahboard";
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import theme from '../themes/app_theme'
 import ReactDOM from 'react-dom';
-import HomePage from "../home/HomePage";
+import HomeRoute from "../home/HomeRoute";
+import {Provider} from 'react-redux'
+import store from '../store'
 class Routes extends React.Component{
 
     constructor(props) {
@@ -19,7 +21,7 @@ class Routes extends React.Component{
             <Router>
                 <Switch>
                     <AuthenticatedRoute path={'/auth'} component={Dashboard}/>
-                    <PrivateRoutes path='/' component={HomePage}/>
+                    <PrivateRoutes path='/' component={HomeRoute}/>
                 </Switch>
             </Router>
         );
@@ -31,9 +33,11 @@ class Routes extends React.Component{
 export default Routes
 if (document.getElementById('app')) {
     ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
+    <Provider store={store}>
+        <MuiThemeProvider theme={theme}>
         <Routes/>
     </MuiThemeProvider>
+    </Provider>
     , 
     document.getElementById('app'));
 }
