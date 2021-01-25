@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\CompanyResource;
 class CompanyController extends Controller
 {
     /**
@@ -15,6 +15,8 @@ class CompanyController extends Controller
     public function index()
     {
         //
+        $company = Company::all();
+        return CompanyResource::collection($company);
     }
 
     /**

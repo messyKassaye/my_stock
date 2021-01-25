@@ -16,16 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 //authentication routes
-Route::post("/login", "App\\Http\\Controllers\\AuthController@login");
-Route::post("/signup", "App\\Http\\Controllers\\AuthController@signup");
+Route::post("/login", "AuthController@login");
+Route::post("/signup", "AuthController@signup");
 
 
 //sanctum middleware for authenticated users
 Route::middleware(["auth:sanctum"])->group(function () {
     //Route::resource("/products", "App\\Http\\Controllers\\ProductController");
+    Route::get('/me','UserController@me');
 });
 
 //global access api routes
 Route::get('/company_category','CompanyCategoryController@index');
 Route::post("/config","ConfigController@store");
-Route::post('/companies','CompanyController@store');
+Route::resource('/companies','CompanyController');
+Route::get('/regions','RegionCityController@index');
+Route::post('/contact','ContactController@store');
+Route::resource('/stocks','StockController');

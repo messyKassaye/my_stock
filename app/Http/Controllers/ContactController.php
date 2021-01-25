@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Location;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -36,6 +37,23 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         //
+        $contact = new Contact();
+        $contact->owner_id = $request->owner_id;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->save();
+
+        $location = new Location();
+        $location->owner_id = $request->owner_id;
+        $location->region_id = $request->region_id;
+        $location->city_id = $request->city_id;
+        $location->save();
+        
+        return response()->json([
+            'status'=>true,
+            'message'=>'Company contact and location is setted successfully'
+        ]);
+
     }
 
     /**

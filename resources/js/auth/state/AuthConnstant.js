@@ -1,0 +1,2 @@
+export const STORE_STOCK = 'STORE_STOCK'
+export const FETCH_STOCKS = 'FETCH_STOCKS'

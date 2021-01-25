@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RegionCity;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\RegionCityResource;
 class RegionCityController extends Controller
 {
     /**
@@ -15,6 +15,8 @@ class RegionCityController extends Controller
     public function index()
     {
         //
+        $regionCity = RegionCity::where('parent_id',0)->get();
+        return RegionCityResource::collection($regionCity);
     }
 
     /**

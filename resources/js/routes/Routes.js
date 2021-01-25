@@ -2,13 +2,13 @@ import React from "react";
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import PrivateRoutes from "./PrivateRoute";
 import AuthenticatedRoute from "./AuthenticationRoute";
-import Dashboard from "../auth/Dahboard";
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import theme from '../themes/app_theme'
 import ReactDOM from 'react-dom';
 import HomeRoute from "../home/HomeRoute";
 import {Provider} from 'react-redux'
 import store from '../store'
+import Dashboard from "../auth/Dashboard";
 class Routes extends React.Component{
 
     constructor(props) {

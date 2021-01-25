@@ -37,6 +37,13 @@ const HomeStyle = makeStyles((theme)=>({
         display:"flex",
         flexDirection:'column',
         glexGrow:1
+      },
+      homeMainContainer:{
+       marginTop:-120,
+       zIndex:1222,
+       backgroundColor:'transparent',
+       display:'flex',
+       flexDirection:'column'
       }
 }))
 

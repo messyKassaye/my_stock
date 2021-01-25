@@ -7,7 +7,8 @@ const footerStyle = makeStyles((theme)=>({
         color:'white',
         display:'flex',
         paddingLeft:150,
-        paddingRight:150
+        paddingRight:150,
+        marginTop:50
     }
 }))
 
