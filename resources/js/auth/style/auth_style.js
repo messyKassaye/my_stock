@@ -11,12 +11,13 @@ const drawerWidth = 240;
         height:'100vh'
     },
     parent: {
-        backgroundColor: '#2B2B2B',
+        backgroundColor: 'transparent',
         marginRight:20,
         borderTopRightRadius:50,
         borderBottomRightRadius:50,
         '&:hover': {
                 backgroundColor: '#111236',
+                color:'white',
                borderTopRightRadius:50,
                borderBottomRightRadius:50,
             },

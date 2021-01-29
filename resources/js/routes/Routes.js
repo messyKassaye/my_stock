@@ -8,7 +8,9 @@ import ReactDOM from 'react-dom';
 import HomeRoute from "../home/HomeRoute";
 import {Provider} from 'react-redux'
 import store from '../store'
-import Dashboard from "../auth/Dashboard";
+import Interceptor from "../interceptors/Interceptor";
+import Authenticated from '../auth/Authenticated'
+import MainDialog from "../commons/MainDialog";
 class Routes extends React.Component{
 
     constructor(props) {
@@ -20,7 +22,7 @@ class Routes extends React.Component{
         return (
             <Router>
                 <Switch>
-                    <AuthenticatedRoute path={'/auth'} component={Dashboard}/>
+                    <AuthenticatedRoute path={'/auth'} component={Authenticated}/>
                     <PrivateRoutes path='/' component={HomeRoute}/>
                 </Switch>
             </Router>
@@ -35,6 +37,8 @@ if (document.getElementById('app')) {
     ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider theme={theme}>
+         <MainDialog/>
+         <Interceptor/>
         <Routes/>
     </MuiThemeProvider>
     </Provider>

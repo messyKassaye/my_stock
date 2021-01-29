@@ -1,0 +1,1 @@
+export const SHOW_MAIN_DIALOG ="SHOW_DIALOG"

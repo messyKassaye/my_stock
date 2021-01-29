@@ -3,10 +3,11 @@ import RegistrationStyle from '../style/RegistrationStyle'
 import { TextField, Typography } from '@material-ui/core'
 import UseForm from '../../../commons/forms/UseForm'
 import LoadingButton from '../../../commons/LoadingButton'
-import {useDispatch,useSelector} from 'react-redux' 
+import {useDispatch} from 'react-redux' 
 import {useHistory} from 'react-router-dom'
-import {store} from '../../../state/AppAction'
-import { SIGN_UP } from '../../state/HomeConstants'
+import { API_PATH } from '../../../Constants'
+import { set,setRole } from '../../../TokenService'
+import RegistrationHeader from '../RegistrationHeader'
 function RepresentativeRegistration(){
     const classes =RegistrationStyle()
     const [submitted,setSubmitted] =useState(false)
@@ -23,20 +24,35 @@ function RepresentativeRegistration(){
     const  handleSubmit =(event)=>{
         event.preventDefault()
         inputs.role_id=3
-        history.push('/dashboard')
-        //dispatch(store(`/api/signup`,inputs,SIGN_UP))
+        setLoading(true)
+        setSubmitted(true)
+        axios.post(`${API_PATH}signup`,inputs)
+        .then(response=>response.data)
+        .then(res=>{
+            set(res.token)
+            setRole(JSON.stringify(res.role))
+            history.push('/auth')
+            window.location.reload()
+        })
+        .catch(error=>{
+            console.log(error)
+            setLoading(false)
+            setSubmitted(false)
+        })
 
     }
     return (
+        <div className={classes.container}>
+        <RegistrationHeader/>
         <div className={classes.formContainer}>
             <form className={classes.form} onSubmit={handleSubmit}>
-                     <Typography variant={'h4'} className={classes.formInfo}>
-                        Company representative registration
+                     <Typography variant={'h6'} className={classes.formInfo}>
+                        Thank you for choosing us. To register your company first we need the company representative. Please register company representative now
                      </Typography>
                      <TextField
                         variant={'outlined'}
                         className={classes.text_input}
-                        label={'First name'}
+                        label={'Representative first name'}
                         onChange={handleInputChange}
                         name="first_name"
                         type='text'
@@ -47,7 +63,7 @@ function RepresentativeRegistration(){
                     <TextField
                         variant={'outlined'}
                         className={classes.text_input}
-                        label={'Last name'}
+                        label={'Representative last name'}
                         onChange={handleInputChange}
                         name="last_name"
                         type='text'
@@ -59,7 +75,7 @@ function RepresentativeRegistration(){
                     <TextField
                         variant={'outlined'}
                         className={classes.text_input}
-                        label={'Email address'}
+                        label={'Representative email address'}
                         onChange={handleInputChange}
                         name="email"
                         type='text'
@@ -70,7 +86,7 @@ function RepresentativeRegistration(){
                     <TextField
                         variant={'outlined'}
                         className={classes.text_input}
-                        label={'Phone'}
+                        label={'Representative phone'}
                         onChange={handleInputChange}
                         name="phone"
                         type='text'
@@ -81,7 +97,7 @@ function RepresentativeRegistration(){
                     <TextField
                         variant={'outlined'}
                         className={classes.text_input}
-                        label={'Password'}
+                        label={'Representative password'}
                         onChange={handleInputChange}
                         name="password"
                         type='password'
@@ -104,6 +120,7 @@ function RepresentativeRegistration(){
                         }
                     </LoadingButton>
             </form>
+        </div>
         </div>
     )
 }

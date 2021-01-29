@@ -1,0 +1,6 @@
+export const STORE_STOCK = 'STORE_STOCK'
+export const FETCH_LOAN_TYPE = 'FETCH_LOAN_TYPE'
+export const STORE_LOAN = 'STORE_LOAN'
+export const SHOW_COMPANY = 'SHOW_COMPANY'
+export const UPDATE_STOCK = 'UPDATE_STOCK'
+export const FETCH_COMPANIES = 'FETCH_COMPANIES'

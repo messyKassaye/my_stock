@@ -22,14 +22,19 @@ Route::post("/signup", "AuthController@signup");
 
 //sanctum middleware for authenticated users
 Route::middleware(["auth:sanctum"])->group(function () {
-    //Route::resource("/products", "App\\Http\\Controllers\\ProductController");
+   
     Route::get('/me','UserController@me');
+    Route::resource('/stocks','StockController');
+    Route::resource('/loans','LoanController');
+    Route::resource('/companies','CompanyController');
+    Route::post('/contact','ContactController@store');
+    Route::post('/company_finance','CompanyFinanceController@store');
+    Route::get('/loan_type','LoanTypeController@index');
 });
 
 //global access api routes
 Route::get('/company_category','CompanyCategoryController@index');
 Route::post("/config","ConfigController@store");
-Route::resource('/companies','CompanyController');
 Route::get('/regions','RegionCityController@index');
-Route::post('/contact','ContactController@store');
-Route::resource('/stocks','StockController');
+Route::get('/public_loans','LoanController@loans');
+

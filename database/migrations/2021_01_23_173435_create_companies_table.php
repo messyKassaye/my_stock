@@ -15,11 +15,13 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('representative_id');
             $table->string('name');
             $table->string('logo_path');
             $table->text('about');
             $table->string('established_year');
             $table->integer('category_id');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

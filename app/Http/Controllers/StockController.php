@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Stock;
 use Illuminate\Http\Request;
-
+use Auth;
+use App\Http\Resources\StockResource;
 class StockController extends Controller
 {
     /**
@@ -15,8 +16,8 @@ class StockController extends Controller
     public function index()
     {
         //
-        $stock = Stock::all();
-        return $stock;
+        $stock = Stock::where('user_id',Auth::user()->id)->get();
+        return StockResource::collection($stock);
     }
 
     /**
@@ -39,11 +40,16 @@ class StockController extends Controller
     {
         //
         $stock = new Stock();
-        $stock->stock_price=$request->stock_price;
-        $stock->minimu_amount = $request->amount;
+        $stock->user_id=Auth::user()->id;
+        $stock->company_id = $request->company_id;
+        $stock->stock_price = $request->price;
+        $stock->minimum_amount = $request->amount;
+        $stock->description =$request->description;
         $stock->save();
+
         return response()->json([
             'status'=>true,
+            'stock'=>$stock,
             'message'=>'Stock added successfully'
         ]);
 
@@ -55,9 +61,15 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function show(Stock $stock)
+    public function show($id)
     {
         //
+        $stock= Stock::find($id);
+        if($stock!=null){
+            return new StockResource($stock);
+        }else{
+            return response()->json(['status'=>false,'message'=>'There is no stock by this id'],404);
+        }
     }
 
     /**
@@ -82,11 +94,24 @@ class StockController extends Controller
     {
         //
         $stock = Stock::find($id);
-        $stock->stock_price = $request->stock_price;
-        $stock->minimu_amount = $request->amount;
-        $stock->save();
+        if($stock!=null){
 
-        return $stock;
+            $stock->user_id=Auth::user()->id;
+            $stock->company_id = $request->company_id;
+            $stock->stock_price = $request->price;
+            $stock->minimum_amount = $request->amount;
+            $stock->description =$request->description;
+            $stock->save();
+
+            return response()->json([
+                'status'=>true,
+                'stock'=>$stock,
+                'message'=>'Stock added successfully'
+            ]);
+
+        }else{
+            return response()->json(['status'=>false,'message'=>'There is no stock by this id'],404);
+        }
 
     }
 
@@ -96,8 +121,14 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock $stock)
+    public function destroy($id)
     {
         //
+        if(Stock::destroy($id)){
+            return response()->json([
+                'status'=>true,
+                'message'=>'Stock is deleted successfully'
+            ]);
+        }
     }
 }

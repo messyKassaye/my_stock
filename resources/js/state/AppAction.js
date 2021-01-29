@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {OPEN_DIALOG} from './Constants'
 export const index = (path,actionType)=>dispatch=>{
   return  axios.get(path)
     .then(response=>response.data)
@@ -9,12 +10,7 @@ export const index = (path,actionType)=>dispatch=>{
 }
 
 export const store = (path,data,actionType)=>dispatch=>{
-    axios.post(path,data,{
-        headers: { 
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-        }
-    })
+    axios.post(path,data)
     .then(response=>response.data)
     .then(res=>dispatch({
         type:actionType,
@@ -23,7 +19,7 @@ export const store = (path,data,actionType)=>dispatch=>{
 }
 
 export const show = (path,id,actionType)=>dispatch=>{
-    axios.get(`${path}${id}`)
+    axios.get(`${path}/${id}`)
     .then(response=>response.data)
     .then(res=>dispatch({
         type:actionType,
@@ -32,11 +28,18 @@ export const show = (path,id,actionType)=>dispatch=>{
 }
 
 export const update = (path,id,data,actionType)=>dispatch=>{
-    axios.put(`${path}${id}`,data)
+    axios.put(`${path}/${id}`,data)
     .then(response=>response.data)
     .then(res=>dispatch({
         type:actionType,
         payload:res
     }))
+}
+
+export const openDialog =(data)=>dispatch=>{
+    dispatch({
+        type:OPEN_DIALOG,
+        payload:data
+    })
 }
 

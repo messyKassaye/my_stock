@@ -19,29 +19,13 @@ function AdminHome(){
     },[])
 
 
-    const handleStock =(stock)=>{
-        setStock(stock)
-        setDone(false)
-        setLoading(false)
-        setSubmitted(false)
-    }
-
-    const handleSubmit = (event)=>{
-        event.preventDefault()
-        setLoading(true)
-        setSubmitted(true)
-        setTimeout(()=>{
-            setDone(true)
-        },2000)
-    }
-
     return <div>
            {
                dataLoading
                ?
                 (
                     <Skeleton
-                     variant={'rec'}
+                     variant={'rect'}
                      width={'100%'}
                      height={100}
                      style={{backgroundColor:grey[500]}}
@@ -51,14 +35,15 @@ function AdminHome(){
                 (
                     <div>
                         {
-                            stocks.length>0
+                            stocks.length<=0
                             ?
                                 (
-                                    <StocksList stock={stocks}/>
+                                    <CompanyFinance/>
+                                    
                                 )
                             :
                                 (
-                                    <CompanyFinance/>
+                                    <StocksList stock={stocks}/>
                                 )
                         }
                     </div>

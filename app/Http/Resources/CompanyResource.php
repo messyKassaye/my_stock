@@ -3,7 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\RegionCity;
+use Illuminate\Support\Facades\DB;
 class CompanyResource extends JsonResource
 {
     /**
@@ -17,7 +18,17 @@ class CompanyResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'finance'=>$this->finance
+            'established_year'=>$this->established_year,
+            'about'=>$this->about,
+            'contact'=>$this->contact,
+            'logo_path'=>$this->logo_path,
+            'finance'=>$this->finance,
+            'stock'=>$this->stock,
+            'category'=>$this->category,
+            'location'=>[
+                'region'=>RegionCity::where('id',$this->location[0]->region_id)->select('name')->get(),
+                'city'=>RegionCity::where('id',$this->location[0]->city_id)->select('name')->get()
+            ]
         ];
     }
 }

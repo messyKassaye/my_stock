@@ -1,2 +1,5 @@
 export const STORE_STOCK = 'STORE_STOCK'
+export const STORE_CONTACT = 'STORE_CONTACT'
 export const FETCH_STOCKS = 'FETCH_STOCKS'
+export const ME = 'ME'
+export const STORE_COMPANY_FINANCE = 'STORE_COMPANY_FINANCE'

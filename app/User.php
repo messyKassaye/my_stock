@@ -7,6 +7,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Role;
+use App\Company;
+use App\Stock;
+use App\Loan;
+use App\Location;
 class User extends Authenticatable
 {
     use HasApiTokens,Notifiable;
@@ -41,4 +45,17 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsToMany(Role::class);
     }
+
+    public function company(){
+        return $this->hasMany(Company::class,'representative_id');
+    }
+
+    public function stock(){
+        return $this->hasOne(Stock::class,'user_id');
+    }
+
+    public function loans(){
+        return $this->hasMany(Loan::class,'user_id')->with('loanType');
+    }
+    
 }

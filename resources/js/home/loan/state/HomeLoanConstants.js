@@ -1,0 +1,1 @@
+export const FETCH_HOME_LOAN = 'FETCH_HOME_LOAN'

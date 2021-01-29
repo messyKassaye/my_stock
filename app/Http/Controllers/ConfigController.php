@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use App\RegionCity;
 use App\Role;
-
+use App\LoanType;
 class ConfigController extends Controller
 {
     /**
@@ -53,6 +53,13 @@ class ConfigController extends Controller
             $region->name = $regions[$i];
             $region->save();
         }
+
+        $loanType = explode(',',Config::get('laonType.loan_type'));
+        for($l=0;$l<count($loanType);$l++){
+            $loan = new LoanType();
+            $loan->name = $loanType[$l];
+            $loan->save();
+        }
         //add subcity and zones
         for($j=0;$j<count($regions);$j++){
             $parents = DB::table('region_cities')->where('name',$regions[$j])->get();
@@ -76,7 +83,7 @@ class ConfigController extends Controller
         $userRole->save();
 
         $companyRole = new Role();
-        $companyRole->name ='Company';
+        $companyRole->name ='Reprsentative';
         $companyRole->save();
     }
 

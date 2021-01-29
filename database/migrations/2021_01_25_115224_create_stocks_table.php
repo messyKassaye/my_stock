@@ -15,8 +15,12 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('company_id');
+            $table->integer('user_id');
             $table->integer('stock_price');
-            $table->double('minimu_amount');
+            $table->double('minimum_amount');
+            $table->text('description');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
