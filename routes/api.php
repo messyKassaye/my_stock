@@ -30,6 +30,7 @@ Route::middleware(["auth:sanctum"])->group(function () {
     Route::post('/contact','ContactController@store');
     Route::post('/company_finance','CompanyFinanceController@store');
     Route::get('/loan_type','LoanTypeController@index');
+
 });
 
 //global access api routes
@@ -37,4 +38,5 @@ Route::get('/company_category','CompanyCategoryController@index');
 Route::post("/config","ConfigController@store");
 Route::get('/regions','RegionCityController@index');
 Route::get('/public_loans','LoanController@loans');
+Route::get('/public_stocks','StockController@stocks');
 

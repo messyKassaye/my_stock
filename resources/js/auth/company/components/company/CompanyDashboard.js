@@ -56,7 +56,7 @@ function CompanyDashboard(){
                                                         No stock is created until now.
                                                     </Typography>
                                                     <Button
-                                                    onClick={openCreateDialog({
+                                                    onClick={()=>openCreateDialog({
                                                         'show':true,
                                                         'title':'Create new Stock',
                                                         'page':<CreateStock type={'create'} data={null} company={user.data.company}/>

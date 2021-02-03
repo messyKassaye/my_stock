@@ -46,33 +46,14 @@ class ConfigController extends Controller
             $role->save();
         }
         
-        $regions = explode(',',Config::get('regions.region'));
-        for($i=0;$i<count($regions);$i++){
-            $region = new RegionCity();
-            $region->parent_id = 0;
-            $region->name = $regions[$i];
-            $region->save();
-        }
-
+        
         $loanType = explode(',',Config::get('laonType.loan_type'));
         for($l=0;$l<count($loanType);$l++){
             $loan = new LoanType();
             $loan->name = $loanType[$l];
             $loan->save();
         }
-        //add subcity and zones
-        for($j=0;$j<count($regions);$j++){
-            $parents = DB::table('region_cities')->where('name',$regions[$j])->get();
-            foreach($parents as $parent){
-               $subcitZone = explode(',',Config::get('regions.city.'.$parent->name));
-                for($k=0;$k<count($subcitZone);$k++){
-                    $subcity = new RegionCity();
-                    $subcity->parent_id = $parent->id;
-                    $subcity->name = $subcitZone[$k];
-                    $subcity->save();
-                }
-            }
-        }
+        
 
         $role = new Role();
         $role->name ='Admin';

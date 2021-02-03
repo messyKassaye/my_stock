@@ -16,7 +16,7 @@ class LoanController extends Controller
     public function index()
     {
         //
-        $loan = Loan::where('user_id',Auth::user()->id)->get();
+        $loan = Loan::all();
         return LoanResource::collection($loan);
     }
 
@@ -46,10 +46,14 @@ class LoanController extends Controller
         //
         $loan = new Loan();
         $loan->company_id = $request->company_id;
-        $loan->user_id = Auth::user()->id;
+        $loan->entitlement = $request->entitlement;
         $loan->loan_type_id = $request->loan_type_id;
-        $loan->number_of_month =$request->month;
-        $loan->interest_rate = $request->interest;
+        $loan->loanFeature =$request->loanFeature;
+        $loan->eligibilityCriteria = $request->eligibilityCriteria;
+        $loan->MinPeriodInYears=$request->MinPeriodInYears;
+        $loan->MaxPeriodInYears=$request->MaxPeriodInYears;
+        $loan->minInterestRate=$request->minInterestRate;
+        $loan->maxInterestRate=$request->maxInterestRate;
         $loan->description=$request->description;
         $loan->save();
 
@@ -103,10 +107,14 @@ class LoanController extends Controller
         //
         $loan = Loan::find($id);
         $loan->company_id = $request->company_id;
-        $loan->user_id = Auth::user()->id;
+        $loan->entitlement = $request->entitlement;
         $loan->loan_type_id = $request->loan_type_id;
-        $loan->number_of_month =$request->month;
-        $loan->interest_rate = $request->interest;
+        $loan->loanFeature =$request->loanFeature;
+        $loan->eligibilityCriteria = $request->eligibilityCriteria;
+        $loan->MinPeriodInYears=$request->MinPeriodInYears;
+        $loan->MaxPeriodInYears=$request->MaxPeriodInYears;
+        $loan->minInterestRate=$request->minInterestRate;
+        $loan->maxInterestRate=$request->maxInterestRate;
         $loan->description=$request->description;
         $loan->save();
 

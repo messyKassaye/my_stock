@@ -16,10 +16,10 @@ class CreateStocksTable extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->integer('user_id');
-            $table->integer('stock_price');
-            $table->double('minimum_amount');
-            $table->text('description');
+            $table->double('value');
+            $table->integer('minPurchaseRequirement');
+            $table->integer('maxPurchaseLimit');
+            $table->boolean('isOpen')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

@@ -17,11 +17,12 @@ class LoanResource extends JsonResource
         return [
             'id'=>$this->id,
             'loan_type'=>$this->loanType,
-            'number_of_month'=>$this->number_of_month,
-            'interest_rate'=>$this->interest_rate,
-            'company'=>$this->company,
-            'user'=>$this->user,
-            'status'=>$this->status
+            'loanFeature'=>$this->loanFeature,
+            'eligibilityCriteria'=>$this->eligibilityCriteria,
+            'MinPeriodInYears'=>$this->MinPeriodInYears,
+            'MaxPeriodInYears'=>$this->MaxPeriodInYears,
+            'maxInterestRate'=>$this->maxInterestRate,
+            'description'=>$this->description
         ];
     }
 }

@@ -16,10 +16,14 @@ class CreateLoansTable extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->integer('user_id');
             $table->integer('loan_type_id');
-            $table->integer('number_of_month');
-            $table->integer('interest_rate');
+            $table->integer('entitlement');
+            $table->string('loanFeature');
+            $table->string('eligibilityCriteria');
+            $table->integer('MinPeriodInYears');
+            $table->integer('MaxPeriodInYears');
+            $table->integer('minInterestRate');
+            $table->integer('maxInterestRate');
             $table->text('description');
             $table->boolean('status')->default(0);
             $table->timestamps();

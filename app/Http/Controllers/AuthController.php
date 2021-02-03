@@ -57,7 +57,7 @@ class AuthController extends Controller
 
 
     public function signup(Request $request){
-
+      
         try {
 
             //validate the incoming data first
@@ -75,15 +75,15 @@ class AuthController extends Controller
             if(count($userExistency)<=0){
             
               $user = new User();
+              $user->userExternalId = $this->guidv4(16);
               $user->first_name = $request->first_name;
               $user->last_name = $request->last_name;
               $user->email = $request->email;
               $user->phone = $request->phone;
               $user->password = Hash::make($request->password);
+              $user->role_id = $request->roleId;
               $user->save();
 
-              $role = Role::find($request->role_id);
-              $user->role()->sync($role);
 
               //register user and send access token
                 $tokenResult = $user->createToken("authToken")->plainTextToken;
@@ -91,7 +91,7 @@ class AuthController extends Controller
                     "status_code" => 200,
                     'user_id'=>$user->id,
                     "token" => $tokenResult,
-                    "role"=>$role,
+                    "role"=>$user->role,
                     "token_type" => "Bearer",
                   ]);
 
@@ -110,5 +110,10 @@ class AuthController extends Controller
               "error" => $error,
             ]);
           }
+    }
+
+    public function guidv4($data)
+    {
+     return rand(1000,9999);
     }
 }

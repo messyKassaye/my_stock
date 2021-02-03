@@ -104,15 +104,17 @@ function CompanyDashboard() {
   }, "Stock products"), user.data.stock === null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["CardContent"], {
     className: classes.noStock
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], null, "No stock is created until now."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Button"], {
-    onClick: openCreateDialog({
-      'show': true,
-      'title': 'Create new Stock',
-      'page': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_stock_forms_CreateStock__WEBPACK_IMPORTED_MODULE_10__["default"], {
-        type: 'create',
-        data: null,
-        company: user.data.company
-      })
-    }),
+    onClick: function onClick() {
+      return openCreateDialog({
+        'show': true,
+        'title': 'Create new Stock',
+        'page': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_stock_forms_CreateStock__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          type: 'create',
+          data: null,
+          company: user.data.company
+        })
+      });
+    },
     variant: 'text',
     color: 'secondary',
     style: {

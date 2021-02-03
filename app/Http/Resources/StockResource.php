@@ -16,9 +16,9 @@ class StockResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'price'=>$this->stock_price,
-            'amount'=>$this->minimum_amount,
-            'applicants'=>$this->applicant
+            'minPurchaseRequirement'=>$this->minPurchaseRequirement,
+            'value'=>$this->value,
+            'maxPurchaseLimit'=>$this->maxPurchaseLimit
         ];
     }
 }

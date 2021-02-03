@@ -16,8 +16,13 @@ class StockController extends Controller
     public function index()
     {
         //
-        $stock = Stock::where('user_id',Auth::user()->id)->get();
+        $stock = Stock::all();
         return StockResource::collection($stock);
+    }
+
+    public function stocks(){
+        $stocks = Stock::where('status',1)->get();
+        return StockResource::collection($stocks);
     }
 
     /**
@@ -40,11 +45,10 @@ class StockController extends Controller
     {
         //
         $stock = new Stock();
-        $stock->user_id=Auth::user()->id;
         $stock->company_id = $request->company_id;
-        $stock->stock_price = $request->price;
-        $stock->minimum_amount = $request->amount;
-        $stock->description =$request->description;
+        $stock->value = $request->value;
+        $stock->minPurchaseRequirement = $request->minPurchaseRequirement;
+        $stock->maxPurchaseLimit = $request->maxPurchaseLimit;
         $stock->save();
 
         return response()->json([
@@ -96,11 +100,10 @@ class StockController extends Controller
         $stock = Stock::find($id);
         if($stock!=null){
 
-            $stock->user_id=Auth::user()->id;
             $stock->company_id = $request->company_id;
-            $stock->stock_price = $request->price;
-            $stock->minimum_amount = $request->amount;
-            $stock->description =$request->description;
+            $stock->value = $request->value;
+            $stock->minPurchaseRequirement = $request->minPurchaseRequirement;
+            $stock->maxPurchaseLimit = $request->maxPurchaseLimit;
             $stock->save();
 
             return response()->json([

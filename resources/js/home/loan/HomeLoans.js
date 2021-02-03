@@ -9,6 +9,7 @@ import CardLoader from '../../loaders/CardLoader'
 import HomeLoanStyle from './style/HomeLoanStyle'
 import {grey} from '@material-ui/core/colors'
 import Apply from './apply/Apply'
+import { Link } from 'react-router-dom'
 function HomeLoans(){
     const classes = HomeLoanStyle()
      const dispatch = useDispatch()
@@ -28,6 +29,8 @@ function HomeLoans(){
              title={'Loans for you'}
              action={
                 <Button
+                 component={Link}
+                 to={'/all_loans'}
                  variant={'text'}
                  color={'default'}
                  style={{textTransform:'none'}}
